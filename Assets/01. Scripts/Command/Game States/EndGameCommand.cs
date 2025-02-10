@@ -6,9 +6,11 @@ public class EndGameCommand : ICommand
 {
     public bool Execute()
     {
-        Debug.LogError("End Game Command!!!!!!!!!!!!!!!!!!");
+        EventBus.Publish(GameEvent.GAME_END);
+        
         return true;
     }
 
     private readonly DataController _dataController = GameManager.Instance.DataController;
+    private readonly UIController _uiController = GameManager.Instance.UIController;
 }

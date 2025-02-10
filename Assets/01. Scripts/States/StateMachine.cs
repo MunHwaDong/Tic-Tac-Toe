@@ -6,7 +6,7 @@ public class StateMachine : MonoBehaviour
 {
     public void Run()
     {
-        ChangeState(new IdleState(this));
+        ChangeState(new StartState(this));
     }
     
     public void ChangeState(IState newState)

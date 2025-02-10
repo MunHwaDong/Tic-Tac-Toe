@@ -14,6 +14,7 @@ public class GameData : ScriptableObject
 
     //Play Data
     public Turn currentTurn;
+    public Turn winner;
     
     public int player1WinCounter;
     public int player2WinCounter;

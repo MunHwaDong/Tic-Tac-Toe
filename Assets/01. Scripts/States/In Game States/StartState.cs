@@ -2,17 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EndGameState : IState
+public class StartState : IState
 {
-    public EndGameState(StateMachine stateMachine)
+    public StartState(StateMachine stateMachine)
     {
         _stateMachine = stateMachine;
     }
     
     public void EnterState()
     {
-        _actions.AddCommand(new EndGameCommand());
-        _actions.ExcuteCommands();
+        EventBus.Publish(GameEvent.GAME_START);
+        
+        _stateMachine.ChangeState(new IdleState(_stateMachine));
     }
 
     public void UpdateState()
@@ -24,7 +25,7 @@ public class EndGameState : IState
     {
 
     }
-
+    
     private readonly StateMachine _stateMachine;
-    private readonly Invoker _actions = new();
+    private readonly Invoker _actions = new Invoker();
 }

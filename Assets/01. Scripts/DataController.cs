@@ -47,9 +47,12 @@ public class DataController : MonoBehaviour
         {
             int count = CheckWinRecursive(row, col, dy[dir], dx[dir], 0, cell) +
                         CheckWinRecursive(row, col, -dy[dir], -dx[dir], 0, cell) - 1;
-            
+
             if (count == 3)
+            {
+                _gameData.winner = _gameData.currentTurn;
                 return true;
+            }
         }
 
         return false;
@@ -63,6 +66,11 @@ public class DataController : MonoBehaviour
             return count;
 
         return CheckWinRecursive(row + dy, col + dx, dy, dx, count + 1, curPlayerSelect);
+    }
+
+    public bool isGridFull()
+    {
+        return _grid.RemainCells;
     }
 
     public bool AddData<T>(T data)
@@ -82,6 +90,9 @@ public class DataController : MonoBehaviour
 
         return true;
     }
+    
+    public delegate void OnChageGameData(GameData data);
+    public event OnChageGameData onChangeGameData;
     
     private Grid _grid;
     private GameData _gameData;

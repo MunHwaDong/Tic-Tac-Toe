@@ -30,7 +30,8 @@ public class Grid : MonoBehaviour
             {
                 _grid[coordi].Marker = _gameData.player2Marker;
             }
-            
+
+            _remainCells--;
             return true;
         }
         
@@ -39,9 +40,10 @@ public class Grid : MonoBehaviour
 
     public bool TryUnmarkingOnCell((int, int) coordi)
     {
-        if (_grid[coordi].Marker is not null)
+        if (_grid[coordi].Marker != _gameData.emptySprite)
         {
-            _grid[coordi].Marker = null;
+            _grid[coordi].Marker = _gameData.emptySprite;
+            _remainCells++;
             return true;
         }
 
@@ -51,6 +53,7 @@ public class Grid : MonoBehaviour
     public void Init(GameData gameData)
     {
         _gameData = gameData;
+        _remainCells = GridSize * GridSize;
         _gridSprite = GetComponent<SpriteRenderer>();
         
         _grid = new Dictionary<(int, int), Cell>();
@@ -83,6 +86,9 @@ public class Grid : MonoBehaviour
         }
     }
 
+    private int _remainCells = 0;
+    public bool RemainCells => _remainCells < GridSize * GridSize;
+    
     private const int GridSize = 3;
     private readonly float _cameraOffsetY = -1f;
     

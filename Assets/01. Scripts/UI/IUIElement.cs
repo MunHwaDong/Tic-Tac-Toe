@@ -1,6 +1,5 @@
-public abstract class IUIElement
+public interface IUIElement
 {
-    public abstract void UpdateElement();
-
-    public IUIElement childElement;
+    void Init(UIController uiController);
+    void UpdateElement(GameData gameData);
 }

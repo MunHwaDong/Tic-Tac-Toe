@@ -5,21 +5,18 @@ using UnityEngine.Events;
 
 public class UIController : MonoBehaviour
 {
+    public delegate void UpdateUI(GameData gameData);
+    public event UpdateUI updateUI;
+    
     public void Init()
     {
-        var canvases = GetComponentsInChildren<Canvas>();
+        var uiElements = GetComponentsInChildren<IUIElement>();
 
-        foreach (var _canvas in canvases)
+        foreach (var uiElement in uiElements)
         {
-            _elements.Add(nameof(_canvas.gameObject), _canvas.gameObject.GetComponent<IUIElement>());
-        }
-        
-        Debug.Log(_elements.Count);
-        foreach (var elementsKey in _elements.Keys)
-        {
-            Debug.Log(elementsKey);
+            uiElement.Init(this);
         }
     }
     
-    private readonly IDictionary<string, IUIElement> _elements = new Dictionary<string, IUIElement>();
+    private List<IUIElement> _elements = new();
 }
