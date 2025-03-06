@@ -26,7 +26,7 @@ public class OnDropCommand : ICommand
             return false;
         }
 
-        if (_dataController.isGridFull() is true)
+        if (_dataController.IsGridFull() is true)
             return true;
 
         return true;

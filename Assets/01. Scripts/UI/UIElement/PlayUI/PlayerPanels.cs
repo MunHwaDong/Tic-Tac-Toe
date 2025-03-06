@@ -12,8 +12,8 @@ public class PlayerPanels : MonoBehaviour, IUIElement
 
     public void UpdateElement(GameData gameData)
     {
-        _player1PointText.text = gameData.player1WinCounter.ToString();
-        _player2PointText.text = gameData.player2WinCounter.ToString();
+        _player1PointText.text = gameData.player1WinPoint.ToString();
+        _player2PointText.text = gameData.player2WinPoint.ToString();
     }
     
     [SerializeField] private TextMeshProUGUI _player1PointText;

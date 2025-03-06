@@ -68,7 +68,7 @@ public class DataController : MonoBehaviour
         return CheckWinRecursive(row + dy, col + dx, dy, dx, count + 1, curPlayerSelect);
     }
 
-    public bool isGridFull()
+    public bool IsGridFull()
     {
         return _grid.RemainCells;
     }

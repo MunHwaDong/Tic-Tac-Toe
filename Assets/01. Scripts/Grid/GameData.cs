@@ -16,6 +16,18 @@ public class GameData : ScriptableObject
     public Turn currentTurn;
     public Turn winner;
     
-    public int player1WinCounter;
-    public int player2WinCounter;
+    public int player1WinPoint;
+    public int player2WinPoint;
+
+    public delegate void OnChangedWinner(GameData gameData);
+    public event OnChangedWinner onChangedWinner;
+
+    public delegate void OnChangedPlayersPoint(GameData gameData);
+    public event OnChangedPlayersPoint onChangedPlayersPoint;
+
+    public void ChangePlayersPoint()
+    {
+        _ = (winner == Turn.PLAYER1) ? player1WinPoint++ : player2WinPoint++;
+        onChangedPlayersPoint?.Invoke(this);
+    }
 }
