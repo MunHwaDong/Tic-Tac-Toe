@@ -7,10 +7,12 @@ public class TempUIManager : Singleton<TempUIManager>
 {
     void Start()
     {
-        Init();
+        //Init();
+
+        SceneLoader.OnSceneLoadingStarts += Init;
     }
 
-    public void Init()
+    public void Init(SceneId sceneId)
     {
         if (rootCanvas.TryGetComponent(out IUIComponent iuiComponent))
         {

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 [
     RequireComponent(typeof(Button))
 ]
-public class ReturnToPreviousButton : UserEventComponent
+public class ReturnToPreviousButton : UserFriendlyComponent
 {
     public override void Init()
     {

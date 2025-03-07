@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using UnityEngine.UI;
 [
     RequireComponent(typeof(Button))
 ]
-public class SinglePlayButton : UserEventComponent
+public class SwitchSceneButton : UserFriendlyComponent
 {
     public override void Init()
     {
@@ -20,5 +21,9 @@ public class SinglePlayButton : UserEventComponent
     public override void EventMethod()
     {
         Debug.Log("안녕 세계!");
+        
+        targetScene.Load();
     }
+    
+    [SerializeField] private SceneId targetScene;
 }

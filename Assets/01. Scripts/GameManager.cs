@@ -8,6 +8,12 @@ using UnityEngine.AddressableAssets;
 ]
 public class GameManager : Singleton<GameManager>
 {
+    private new void Awake()
+    {
+        Init();
+        _stateMachine.Run();
+    }
+    
     public bool GetInput()
     {
         return Input.GetMouseButtonUp(0);
@@ -29,11 +35,11 @@ public class GameManager : Singleton<GameManager>
         return Physics2D.Raycast(mousePos, Vector2.zero, Mathf.Infinity, 1 << LayerMask.NameToLayer(targetLayer));
     }
 
-    void Start()
-    {
-        Init();
-        _stateMachine.Run();
-    }
+    // void Start()
+    // {
+    //     Init();
+    //     _stateMachine.Run();
+    // }
 
     void Init()
     {

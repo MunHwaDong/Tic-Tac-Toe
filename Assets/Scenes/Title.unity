@@ -391,6 +391,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   childrenObject: []
+  targetScene: 1
 --- !u!1 &359327742
 GameObject:
   m_ObjectHideFlags: 0

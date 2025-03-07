@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class UserEventComponent : MonoBehaviour, IUIComponent
+public abstract class UserFriendlyComponent : MonoBehaviour, IUIComponent
 {
     public abstract void Init();
 

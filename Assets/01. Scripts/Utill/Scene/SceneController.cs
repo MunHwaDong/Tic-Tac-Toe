@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum SceneID
 {
@@ -9,6 +10,8 @@ public enum SceneID
     
     [Tooltip("Next Scene In Build Index")]
     NEXT_SCENE = 1,
+    
+    
 }
 
 public class SceneController : MonoBehaviour

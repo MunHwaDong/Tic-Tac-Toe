@@ -6,7 +6,7 @@ using UnityEngine.UI;
 [
     RequireComponent(typeof(Button))
 ]
-public class OnlineMatchButton : UserEventComponent
+public class OnlineMatchButton : UserFriendlyComponent
 {
     public override void Init()
     {
