@@ -27,4 +27,6 @@ public class OpenSubCanvasButton : UserFriendlyComponent
     {
         return childrenComponent;
     }
+
+    [SerializeField] private bool isThisCanvasHide = false;
 }

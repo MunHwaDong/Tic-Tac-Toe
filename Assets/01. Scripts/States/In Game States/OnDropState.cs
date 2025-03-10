@@ -12,9 +12,11 @@ public class OnDropState : IState
     public void EnterState()
     {
         _actions.AddCommand(new OnDropCommand());
-        
-        if(_actions.ExcuteCommands() is false)
+
+        if (_actions.ExcuteCommands() is false)
+        {
             _stateMachine.ChangeState(new IdleState(_stateMachine));
+        }
         //Victory case
         else
             _stateMachine.ChangeState(new EndGameState(_stateMachine));

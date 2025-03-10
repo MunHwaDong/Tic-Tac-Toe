@@ -25,15 +25,18 @@ public class UIManager : Singleton<UIManager>
         while(_canvasTrace.Count > 0) _canvasTrace.Pop();
     }
     
-    public void OpenChildrenCanvas(IUIComponent iuiComponent)
+    public void OpenChildrenCanvas(IUIComponent iuiComponent, bool isThisCanvasHide = false)
     {
         List<IUIComponent> thisCanvas = _canvasTrace.Peek();
         
         _canvasTrace.Push(iuiComponent.GetChildren());
-        
-        foreach (var subCanvas in thisCanvas)
+
+        if (isThisCanvasHide)
         {
-            subCanvas.Hide();
+            foreach (var subCanvas in thisCanvas)
+            {
+                subCanvas.Hide();
+            }
         }
         
         foreach (var nextCanvas in _canvasTrace.Peek())

@@ -14,7 +14,6 @@ public class DataController : MonoBehaviour
         UIManager.Instance.dataEventHandler = new DataEventHandler(_gameData);
         
         _grid ??= FindObjectOfType<BoardGrid>();
-        //_grid.Init(_gameData);
     }
     
     public bool OnDropMarker()
@@ -30,7 +29,7 @@ public class DataController : MonoBehaviour
 
     public void ChangeTurn()
     {
-        _gameData.currentTurn = _gameData.currentTurn == Turn.PLAYER1 ? Turn.PLAYER2 : Turn.PLAYER1;
+        _gameData.ChangeTurn();
     }
     
     public bool CheckForWin()
@@ -53,7 +52,7 @@ public class DataController : MonoBehaviour
 
             if (count == 3)
             {
-                _gameData.winner = _gameData.currentTurn;
+                _gameData.SetWinner();
                 return true;
             }
         }
@@ -94,10 +93,8 @@ public class DataController : MonoBehaviour
         return true;
     }
     
-    public delegate void OnChageGameData(GameData data);
-    public event OnChageGameData onChangeGameData;
-    
     private BoardGrid _grid;
-    private GameData _gameData;
+    public GameData _gameData;
+    
     private IDictionary<string, object> _data = new Dictionary<string, object>();
 }

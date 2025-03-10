@@ -24,6 +24,22 @@ public abstract class DataFriendlyComponent : MonoBehaviour, IUIComponent
     {
         return new List<IUIComponent>();
     }
+    
+    public virtual void CastingChildren()
+    {
+        if (childrenObject is not null && childrenObject.Count > 0)
+        {
+            foreach (var component in childrenObject)
+            {
+                childrenComponent.Add(component.GetComponent<IUIComponent>()); 
+            }
+        }
+    }
 
     public abstract void OnChangedDataEvent(GameData data);
+    
+    [Header("Only UICanvas Object")]
+    [SerializeField] protected List<GameObject> childrenObject;
+    
+    protected List<IUIComponent> childrenComponent = new();
 }
