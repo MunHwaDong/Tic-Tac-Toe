@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,7 +17,7 @@ public class Cell : MonoBehaviour
         Debug.Log("Erasing marker!!");
         Marker = emptySprite;
     }
-    
+
     public (int, int) _coordinate { get; private set; }
 
     private SpriteRenderer _cellSprite;

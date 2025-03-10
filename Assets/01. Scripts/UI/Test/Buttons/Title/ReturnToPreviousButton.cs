@@ -18,6 +18,6 @@ public class ReturnToPreviousButton : UserFriendlyComponent
 
     public override void EventMethod()
     {
-        TempUIManager.Instance.CloseChildrenCanvas();
+        UIManager.Instance.CloseChildrenCanvas();
     }
 }

@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 using UnityEngine;
 
-public class UICanvas : MonoBehaviour, IUIComponent
+public abstract class UICanvas : MonoBehaviour, IUIComponent
 {
-    public void Init()
+    public virtual void Init()
     {
         _children = GetComponentsInChildren<IUIComponent>().
             Where(c => !ReferenceEquals(c, this)).ToList();
@@ -41,5 +42,5 @@ public class UICanvas : MonoBehaviour, IUIComponent
         return _children;
     }
     
-    private List<IUIComponent> _children = new();
+    protected List<IUIComponent> _children = new();
 }

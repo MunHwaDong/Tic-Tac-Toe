@@ -11,6 +11,7 @@ public class GameData : ScriptableObject
     public Sprite emptySprite;
     
     public GameObject cellPrefab;
+    public GameObject gridPrefab;
 
     //Play Data
     public Turn currentTurn;
@@ -19,15 +20,27 @@ public class GameData : ScriptableObject
     public int player1WinPoint;
     public int player2WinPoint;
 
-    public delegate void OnChangedWinner(GameData gameData);
-    public event OnChangedWinner onChangedWinner;
+    public delegate void OnChangedTurn(GameData gameData);
+    public event OnChangedTurn onChangedTurn;
 
     public delegate void OnChangedPlayersPoint(GameData gameData);
     public event OnChangedPlayersPoint onChangedPlayersPoint;
 
-    public void ChangePlayersPoint()
+    private void ChangePlayersPoint()
     {
         _ = (winner == Turn.PLAYER1) ? player1WinPoint++ : player2WinPoint++;
         onChangedPlayersPoint?.Invoke(this);
+    }
+
+    public void ChangeTurn()
+    {
+        currentTurn = currentTurn != Turn.PLAYER1 ? Turn.PLAYER1 : Turn.PLAYER2;
+        onChangedTurn?.Invoke(this);
+    }
+
+    public void SetWinner()
+    {
+        winner = currentTurn;
+        ChangePlayersPoint();
     }
 }

@@ -1,34 +1,30 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class TempUIManager : Singleton<TempUIManager>
+public class UIManager : Singleton<UIManager>
 {
-    void Start()
+    /// <summary>
+    /// 새로운 Scene으로 전환할 때 RootCanvas는 해당 함수를 호출하여 현재 Scene의 Canvas들을 추적한다.
+    /// </summary>
+    /// <param name="rootCanvas"></param>
+    public void RegisterRootCanvas(IUIComponent rootCanvas)
     {
-        //Init();
-
-        SceneLoader.OnSceneLoadingStarts += Init;
+        _rootCanvas = rootCanvas as RootUICanvas;
+        _canvasTrace.Push(new List<IUIComponent> { rootCanvas });
     }
 
-    public void Init(SceneId sceneId)
+    /// <summary>
+    /// Scene 전환 시 현재 Scene의 모든 Canvas들을 비워야 다음 Scene의 Root Canvas가 Stack의 가장 아래 위치
+    /// </summary>
+    /// <param name="rootCanvas"></param>
+    public void UnregisterRootCanvas(IUIComponent rootCanvas)
     {
-        if (rootCanvas.TryGetComponent(out IUIComponent iuiComponent))
-        {
-            _canvasTrace.Push(new List<IUIComponent>() { iuiComponent });
-
-            iuiComponent.Init();
-        }
-
-        foreach (var subCanvas in GetComponentsInChildren<UICanvas>()
-                     .Where(c => !ReferenceEquals(c, iuiComponent)))
-        {
-            subCanvas.Init();
-            subCanvas.Hide();
-        }
+        while(_canvasTrace.Count > 0) _canvasTrace.Pop();
     }
-
+    
     public void OpenChildrenCanvas(IUIComponent iuiComponent)
     {
         List<IUIComponent> thisCanvas = _canvasTrace.Peek();
@@ -51,7 +47,7 @@ public class TempUIManager : Singleton<TempUIManager>
     /// </summary>
     public void CloseChildrenCanvas()
     {
-        if (!ReferenceEquals(rootCanvas, _canvasTrace.Peek()))
+        if (!ReferenceEquals(_rootCanvas, _canvasTrace.Peek()))
         {
             foreach (var subCanvas in _canvasTrace.Pop())
             {
@@ -77,11 +73,13 @@ public class TempUIManager : Singleton<TempUIManager>
     {
         command?.Execute();
     }
+    
+    public DataEventHandler dataEventHandler;
 
     /// <summary>
     /// 최상위의 UI Canvas
     /// </summary>
-    [SerializeField] private GameObject rootCanvas;
+    private RootUICanvas _rootCanvas;
     
     //private IUIComponent uiCanvas;
     private readonly Stack<List<IUIComponent>> _canvasTrace = new();

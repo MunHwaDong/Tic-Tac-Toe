@@ -6,7 +6,7 @@ using UnityEngine.UI;
 [
     RequireComponent(typeof(Button))
 ]
-public class OnlineMatchButton : UserFriendlyComponent
+public class OpenSubCanvasButton : UserFriendlyComponent
 {
     public override void Init()
     {
@@ -20,7 +20,7 @@ public class OnlineMatchButton : UserFriendlyComponent
 
     public override void EventMethod()
     {
-        TempUIManager.Instance.OpenChildrenCanvas(this);
+        UIManager.Instance.OpenChildrenCanvas(this);
     }
 
     public override List<IUIComponent> GetChildren()

@@ -10,7 +10,7 @@ public class UIController : MonoBehaviour
     
     public void Init()
     {
-        GameManager.Instance.DataController.onChangeGameData += UpdateUI;
+        //GameManager.Instance.DataController.OnChangeGameData += UpdateUI;
         
         var uiElements = GetComponentsInChildren<IUIElement>();
 

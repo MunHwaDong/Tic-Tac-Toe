@@ -35,23 +35,16 @@ public class GameManager : Singleton<GameManager>
         return Physics2D.Raycast(mousePos, Vector2.zero, Mathf.Infinity, 1 << LayerMask.NameToLayer(targetLayer));
     }
 
-    // void Start()
-    // {
-    //     Init();
-    //     _stateMachine.Run();
-    // }
-
     void Init()
     {
-        TryGetComponent(out _stateMachine);
-        DataController.Init();
-        UIController.Init();
+        if (TryGetComponent(out _stateMachine) is false)
+        {
+            _stateMachine = gameObject.AddComponent<StateMachine>();
+        }
     }
 
     private StateMachine _stateMachine;
     private DataController _dataController;
-    private UIController _uiController;
     
-    public DataController DataController => (_dataController ??= FindObjectOfType<DataController>());
-    public UIController UIController => (_uiController ??= FindObjectOfType<UIController>());
+    public DataController DataController => (_dataController = FindObjectOfType<DataController>());
 }

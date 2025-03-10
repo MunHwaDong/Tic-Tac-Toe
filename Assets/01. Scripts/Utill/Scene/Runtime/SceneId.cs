@@ -4,13 +4,13 @@ using System.Collections.Generic;
 public enum SceneId
 {
         [Tooltip("Previous Scene in Build Index")]
-        PreviousScene = -2,
+        PreviousScene = -1,
 
         [Tooltip("Next Scene in Build Index")]
-        NextScene = -1,
+        NextScene = 1,
 
         [Tooltip("Invalid Scene/Unknown Scene/Null Scene")]
-        Unknown = 0,
+        Unknown = -1,
 
         Title = 0,
         InGame = 1,
@@ -21,7 +21,7 @@ public static class BI
 {
     public static readonly (SceneId, string)[] BUILD_INDEX = new (SceneId, string)[]
     {
-               (SceneId.Title, "Title"),
+        (SceneId.Title, "Title"),
         (SceneId.InGame, "InGame")
     };
 

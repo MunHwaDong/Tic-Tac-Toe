@@ -31,6 +31,5 @@ public class OnDropState : IState
     }
 
     private readonly StateMachine _stateMachine;
-    private readonly DataController _dataController = GameManager.Instance.DataController;
     private readonly Invoker _actions = new();
 }

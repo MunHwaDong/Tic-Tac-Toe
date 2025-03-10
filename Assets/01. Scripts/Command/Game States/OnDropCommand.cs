@@ -17,6 +17,8 @@ public class OnDropCommand : ICommand
      */
     public bool Execute()
     {
+        _dataController = GameManager.Instance.DataController;
+        
         if(_dataController.OnDropMarker() is false)
             return false;
 
@@ -32,5 +34,5 @@ public class OnDropCommand : ICommand
         return true;
     }
 
-    private readonly DataController _dataController = GameManager.Instance.DataController;
+    private DataController _dataController;
 }

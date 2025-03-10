@@ -12,5 +12,4 @@ public class EndGameCommand : ICommand
     }
 
     private readonly DataController _dataController = GameManager.Instance.DataController;
-    private readonly UIController _uiController = GameManager.Instance.UIController;
 }

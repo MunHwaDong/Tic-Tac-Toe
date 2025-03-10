@@ -16,6 +16,8 @@ MonoBehaviour:
   player2Marker: {fileID: 21300000, guid: 88c4848e886baf5419a55a886016f979, type: 3}
   emptySprite: {fileID: 21300000, guid: 93b8ce447292d904ca79f6cbf135d0ce, type: 3}
   cellPrefab: {fileID: 5186646171200131672, guid: 33b201ccafb741c438e4c5f06a365242, type: 3}
+  gridPrefab: {fileID: 6629867964310885690, guid: 331905f1e21f26b429ac90063a574ba3, type: 3}
   currentTurn: 0
-  player1WinCounter: 0
-  player2WinCounter: 0
+  winner: 0
+  player1WinPoint: 0
+  player2WinPoint: 0

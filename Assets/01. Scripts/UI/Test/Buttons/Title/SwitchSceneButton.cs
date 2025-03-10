@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,10 +22,8 @@ public class SwitchSceneButton : UserFriendlyComponent
     
     public override void EventMethod()
     {
-        Debug.Log("안녕 세계!");
-        
         targetScene.Load();
     }
-    
+
     [SerializeField] private SceneId targetScene;
 }

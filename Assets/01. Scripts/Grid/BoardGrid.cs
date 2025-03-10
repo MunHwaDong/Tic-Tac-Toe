@@ -3,9 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
-public class Grid : MonoBehaviour
+public class BoardGrid : MonoBehaviour
 {
+    void Awake()
+    {
+        _gameData = Addressables.LoadAssetAsync<GameData>("Assets/02. Prefabs/GameData/GameData.asset").WaitForCompletion();
+        
+        Init(_gameData);
+    }
+    
     //operator '[]' overloading
     public Cell this[int row, int col]
     {

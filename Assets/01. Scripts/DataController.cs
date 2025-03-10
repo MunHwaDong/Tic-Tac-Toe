@@ -7,11 +7,14 @@ using UnityEngine.AddressableAssets;
 
 public class DataController : MonoBehaviour
 {
-    public void Init()
+    void Awake()
     {
         _gameData = Addressables.LoadAssetAsync<GameData>("Assets/02. Prefabs/GameData/GameData.asset").WaitForCompletion();
-        _grid ??= FindObjectOfType<Grid>();
-        _grid.Init(_gameData);
+
+        UIManager.Instance.dataEventHandler = new DataEventHandler(_gameData);
+        
+        _grid ??= FindObjectOfType<BoardGrid>();
+        //_grid.Init(_gameData);
     }
     
     public bool OnDropMarker()
@@ -94,7 +97,7 @@ public class DataController : MonoBehaviour
     public delegate void OnChageGameData(GameData data);
     public event OnChageGameData onChangeGameData;
     
-    private Grid _grid;
+    private BoardGrid _grid;
     private GameData _gameData;
     private IDictionary<string, object> _data = new Dictionary<string, object>();
 }
